@@ -1,0 +1,36 @@
+# Environment variables and secrets
+.env
+.env.local
+*.env
+*.pem
+
+# Dependencies and lock files
+node_modules/
+/vendor/
+.pnp/
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE and Text Editor configurations
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Build outputs and caches
+dist/
+build/
+out/
+.cache/
+_pycache_

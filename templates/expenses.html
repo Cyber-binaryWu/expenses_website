@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses</title>
+    <link rel="stylesheet" href="static/styles.css">
+
+</head>
+<body>
+    <h1>Expenses</h1>
+    
+        <div class="expense-container">
+            <!-- Access your data by column names instead of [0] -->
+             <table>
+                    <tr>
+                        <th>Name</th><th>Amount</th><th>Type</th> <th> Date</th> <th></th> <th></th>
+                    </tr>
+                    {% for expense in expenses %}
+                    <tr>
+                        <td>{{ expense['expense_name'] }}</td> 
+                        <td> £{{ expense['expense_amount'] }} </td>
+                        <td>{{ expense['expense_payment_type'] }}</td>
+                        <td>{{ expense['expense_date'] }}</td>
+                        <td><button>EDIT</button></td>
+                        <td><BUTton>DELETE</BUTton></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            
+        </div>
+</body>
+</html>
