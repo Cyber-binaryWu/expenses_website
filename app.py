@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from database_functions import show_expenses, remove_expense
 
 app = Flask(__name__)
@@ -22,9 +22,9 @@ def delete_expense(id):
     return redirect(url_for('expenses')) # Reloads the page to show it is gone
 
 @app.route("/add-expense", methods=["POST"])
-def delete_expense(id):
-    remove_expense(id) # This runs your existing SQLite delete code
-    return redirect(url_for('expenses')) # Reloads the page to show it is gone
+def add_expense():
+    expense_name = request.form.get("Expense_name")
+    return redirect(url_for("expenses"))
 
 
 if __name__ == "__main__":
