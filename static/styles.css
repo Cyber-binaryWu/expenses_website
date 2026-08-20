@@ -8,19 +8,171 @@ body {
     align-items: center; 
 }
 
+h1 {
+    margin-top: 20px;
+    color: #333;
+    text-transform: uppercase;
+}
 .expense-container {
     width: 100%;
-    max-width: 600px; 
+    max-width: 700px; 
+    min-width: 700px; 
     margin: 20px auto;
 }
 
 table {
     width: 100%;
-    border-collapse: collapse; /* Removes default double borders */
+    border-collapse: collapse; 
 }
 
-/* Use padding on th and td to adjust the spacing between data cleanly */
+
+th {
+    text-transform: uppercase;
+}
 th, td {
     padding: 10px 15px; 
-    text-align: left; /* Aligns data uniformly */
+    text-align: left; 
+}
+
+button{
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 75px;
+    text-shadow: none;
+    box-shadow: none;
+    font-weight: bold;
+    border: none;
+}
+
+button:hover, 
+a:hover {
+    filter: brightness(0.85);
+}
+
+
+.delete_button{
+    background-color: rgb(141, 5, 5);
+}
+.edit_button{
+    background-color: rgb(90, 90, 164);
+}
+
+.add-expense_container { 
+  font-size: 20px; 
+}
+
+
+
+/* Container styles */
+.add-expense_container {
+  font-size: 20px; 
+  font-family: sans-serif; 
+  max-width: 300px;       
+  min-width: 300px;
+  margin-top: 20px;
+}
+
+
+.add-expense_container label { 
+  text-transform: uppercase; 
+  display: block;        
+  margin-bottom: 6px;     
+  font-weight: bold;     
+  font-size: 14px;      
+}
+
+
+.add-expense_container input,
+.add-expense_container select {
+  display: block;         
+  width: 100%;            
+  padding: 10px;           
+  margin-bottom: 20px;    
+  box-sizing: border-box; 
+  font-size: 16px;       
+}
+
+
+.add-expense_container button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff; 
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.add-expense_container button:hover {
+  background-color: #0056b3; 
+}
+
+.add_view_container{
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.update_option_container{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+.error_message{
+    color: red;
+}
+
+
+#update_cancel_button{
+    background-color: rgb(141, 5, 5);
+}
+#update_button{
+    background-color: rgb(17, 143, 15);
+}
+
+
+
+
+
+.modal { 
+  background-color: rgba(0, 0, 0, 0.5); 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  transition: all 0.3s ease-in-out; 
+  z-index: 999; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  display: none;
+}
+
+
+.modal-inner { 
+  padding: 20px; 
+  background-color: white; 
+  border-radius: 10px; 
+  display: flex; 
+  flex-direction: column; 
+  max-width: 300px; 
+  gap: 10px;
+}
+
+.modal input,
+.modal select {
+  display: block;         
+  width: 100%;            
+  padding: 10px;           
+  margin-bottom: 20px;   
+  box-sizing: border-box;  
+  font-size: 16px;       
+}
+
+.hidden{
+    display: none !important;
 }

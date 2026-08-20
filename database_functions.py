@@ -2,16 +2,15 @@ import sqlite3
 import datetime
 
 # Kept globally as it is a safe string variable
-uk_date = datetime.datetime.now().strftime("%d-%m-%Y")
+uk_date = datetime.datetime.now().strftime("%d/%m/%Y")
 
 def get_db_connection():
-    """Helper function to create a new database connection for each request."""
     conn = sqlite3.connect("expenses.db")
-    #returns data dictionary like instead of people
+    #returns data dictionary like
     conn.row_factory = sqlite3.Row 
     return conn
 
-def add_expense(expense_name, expense_amount, expense_payment_type, expense_date=uk_date):
+def insert_expense(expense_name, expense_amount, expense_payment_type, expense_date=uk_date):
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
@@ -54,7 +53,6 @@ def show_expenses():
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM expense")
-    # FIXED: Added parentheses to execute fetchall()
     data = cursor.fetchall() 
     conn.close()
     return data

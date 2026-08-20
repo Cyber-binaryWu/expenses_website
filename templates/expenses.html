@@ -1,46 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expenses</title>
     <link rel="stylesheet" href="static/styles.css">
+    <script defer src="static/script.js"></script>
 
 </head>
+
 <body>
-    <h1>Test</h1>
-    <h1>Expenses</h1>
-    <form action="add-expense" method="POST">
-        <label for="expense_name">Expense Name:</label>
-        <input type="text" id="expense_name" name="expense_name">
-        <button type="submit">Add Expense</button>
-    </form>
-    
-    <h1>Current Expenses:</h1>
+    <div class="add_view_container">
+        <div class="add-expense_container">
+            <h1>Add Expense</h1>
+            <form action="/add-expense" method="POST">
+
+
+                <label for="expense_name">Expense Name</label>
+                <input type="text" id="expense_name" name="expense_name" placeholder="e.g., Groceries">
+
+                <!-- Expense Amount -->
+                <label for="expense_amount">Amount</label>
+                <input type="number" id="expense_amount" name="expense_amount" step="0.50" placeholder="0.00">
+
+                <!-- Expense Type (Payment Method) -->
+                <label for="expense_type">Payment Method</label>
+                <select id="expense_type" name="expense_type">
+                    <option value="card">Card</option>
+                    <option value="cash">Cash</option>
+                </select>
+
+                <!-- Expense Date -->
+                <label for="expense_date">Date</label>
+                <input type="date" id="expense_date" name="expense_date">
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn">Submit</button>
+
+                <p class="error_message">Please make sure all fields are filled</p>
+
+            </form>
+        </div>
+
+
+
         <div class="expense-container">
-            <!-- Access your data by column names instead of [0] -->
-             <table>
-                    <tr>
-                        <th>Name</th><th>Amount</th><th>Type</th> <th> Date</th> <th></th> <th></th>
-                    </tr>
-                    {% for expense in expenses %}
-                    <tr>
-                        <td>{{ expense['expense_name'] }}</td> 
-                        <td> £{{ expense['expense_amount'] }} </td>
-                        <td>{{ expense['expense_payment_type'] }}</td>
-                        <td>{{ expense['expense_date'] }}</td>
-                        <td><button>EDIT</button></td>
-                        <td>  <!-- This form securely sends the specific row ID to Flask -->
-                            <form action="{{ url_for('delete_expense', id=expense['expense_id']) }}" method="POST" style="display:inline;">
-                                <button type="submit" onclick="return confirm('Are you sure you want to delete this expense?');">DELETE</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            
-        </div> 
+            <h1>Expenses</h1>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                    <th> Date</th>
+                </tr>
+                {% for expense in expenses %}
+                <tr>
+                    <td>{{ expense['expense_name'] }}</td>
+                    <td> £{{ expense['expense_amount'] }} </td>
+                    <td>{{ expense['expense_payment_type'] }}</td>
+                    <td>{{ expense['expense_date'] }}</td>
+                    <td><button class="edit_button data-id="{{expense['expense_id']}}">EDIT</button></td>
+                    <td>
+                        <form action="{{ url_for('delete_expense', id=expense['expense_id']) }}" method="POST"
+                            style="display:inline;">
+                            <button class="delete_button" type="submit"
+                                onclick="return confirm('Are you sure you want to delete this expense?');">DELETE</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
 
+        </div>
+    </div>
+    <div class="modal" id="modal">
+        <div class="modal-inner">
+            <h2>Select The option you wish to update</h2>
+            <form action="" method="POST">
+            <label for="update_options">Update Type:</label>
+            <select id="update_options" name="update_options">
+                <option value="expense_name">Name</option>
+                <option value="expense_amount">Amount</option>
+                <option value="expense_type">Type</option>
+                <option value="expense_date">Date</option>
+            </select>
 
+            <input class="hidden" type="text" id="update_expense_name" name="update_expense_name"
+                placeholder="Enter In new name">
+            <select class="hidden" id="update_expense_type" name="update_expense_type">
+                <option value="card">Card</option>
+                <option value="cash">Cash</option>
+            </select>
+            <input class="hidden" type="date" id="update_expense_date" name="update_expense_date"
+                placeholder="Enter In new date">
+            <input class="hidden" type="number" id="update_expense_amount" name="update_expense_amount" step="0.50"
+                placeholder="0.00">
+
+            <div class="update_option_container">
+                <button type="button" id="update_cancel_button">CANCEL</button>
+                <button type="submit" id="update_button">UPDATE</button>
+            </div>
+        </form>
+        </div>
+    </div>
 </body>
+
 </html>
